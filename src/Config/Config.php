@@ -17,8 +17,8 @@ class Config {
 
 	public static function load( $config_file ) {
 		if ( ! self::$config ) {
-			if(!is_file($config_file)){
-				throw new ConfigException('Invalid config file path');
+			if ( ! is_file( $config_file ) ) {
+				throw new ConfigException( 'Invalid config file path' );
 			}
 			self::$config = parse_ini_file( $config_file, true );
 			if ( ! is_array( self::$config ) || empty( self::$config ) ) {
