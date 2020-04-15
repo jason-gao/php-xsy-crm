@@ -25,9 +25,6 @@ class MonologLogger {
 			$streamHandler = new StreamHandler( $stream_log, $level );
 			$streamHandler->setFormatter( new LineFormatter( "[%datetime%] %channel%.%level_name%: %message% %context% %extra% \n", '', true ) );
 			self::$logger->pushHandler( $streamHandler );
-			$error_handler = new ErrorLogHandler( 4, $level, true, true );
-			$error_handler->setFormatter( new LineFormatter( "[%datetime%] %channel%.%level_name%: %message% %context% %extra% \n", '', true ) );
-			self::$logger->pushHandler( $error_handler );
 		}
 
 		return self::$logger;

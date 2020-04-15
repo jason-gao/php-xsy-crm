@@ -87,7 +87,7 @@ class XsyCrmTest extends TestCase {
 
 	public function testAccountCreate100() {
 		for ( $i = 0; $i < 100; $i ++ ) {
-			$this->testAccountCreate();
+//			$this->testAccountCreate();
 		}
 	}
 
