@@ -3,7 +3,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
-error_reporting(0);
+error_reporting(E_ERROR);
 
 abstract class TestCase extends BaseTestCase
 {

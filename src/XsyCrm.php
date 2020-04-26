@@ -103,7 +103,7 @@ class XsyCrm {
 	}
 
 
-	public static function apiCall( $url, $method, $body, $headers = [], $options = [], $version = '2_0', $timeOut = 20 ) {
+	public static function apiCall( $url, $method, $body, $headers = [], $options = [], $version = '2_0', $raw = false, $timeOut = 20 ) {
 		$url = self::getConfig()['normal'][ 'base_api_url_rest_v' . $version ] . $url;
 
 		$defaultHeaders = [
@@ -115,9 +115,13 @@ class XsyCrm {
 			$url .= $body;
 		}
 		$rawResponse = self::getClient()->send( $url, $method, $body, $headers, $timeOut, $options );
-		$resBody     = $rawResponse->getBody();
+		if ( $raw ) {
+			return $rawResponse;
+		} else {
+			$resBody = $rawResponse->getBody();
 
-		return $resBody;
+			return $resBody;
+		}
 	}
 
 

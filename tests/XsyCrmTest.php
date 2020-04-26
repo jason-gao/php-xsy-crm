@@ -91,5 +91,23 @@ class XsyCrmTest extends TestCase {
 		}
 	}
 
+	//v1
+	//获取客户
+	public function testGetAccount() {
+		$url       = 'query';
+		$urlParams = [
+			'q' => "select id, ownerId, accountName  from account order by id desc limit 0,1"
+		];
+		$url       .= "?" . http_build_query( $urlParams );
+		$body      = [];
+		$headers   = [];
+		$options   = [];
+		XsyCrm::setConfig( self::getConfig() );
+		$res = XsyCrm::apiCall( $url, 'POST', $body, $headers, $options, 1 , true);
+		var_dump( $res->getHttpResponseCode());
+//		var_dump( $res->getHeaders());
+		var_dump( $res->getBody());
+	}
+
 
 }
