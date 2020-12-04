@@ -3,7 +3,8 @@ base_api_url_rest_v1 = 'https://api-tencent.xiaoshouyi.com/data/v1/'
 base_api_url_rest_v2_0 = 'https://api-tencent.xiaoshouyi.com/rest/data/v2.0/'
 base_api_url_rest_v2 = 'https://api-tencent.xiaoshouyi.com/rest/data/v2/'
 ua = 'yundun xsy sdk'
-memcache_instance_key = 'memcache_xsy-crm'
+cache_driver = 'memcached'
+;cache_driver = 'redis'
 sdk_log_switch = true
 sdk_log = '/tmp/xsy-crm.log'
 
@@ -26,4 +27,11 @@ token_mem_key = 'xsy-token'
 MEMCACHE_HOST = 127.0.0.1
 MEMCACHE_PORT = 11211
 MEMCACHE_WEIGHT = 0
+
+[redis_xsy_crm]
+db       = 1
+timeout  = 3
+cmdlog   = off
+password = ''
+address  = 127.0.0.1:6379
 

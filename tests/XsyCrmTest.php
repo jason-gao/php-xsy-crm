@@ -24,11 +24,12 @@ class XsyCrmTest extends TestCase {
 	public function testGetToken() {
 		XsyCrm::setConfig( self::getConfig() );
 		$token = XsyCrm::token();
+		var_export( "get token: $token" );
 		$this->assertContains( 'Bearer', $token );
 	}
 
 	//创建自定义对象
-	public function testDiyObject() {
+	public function _testDiyObject() {
 		$url  = 'xobjects/customEntity1__c';
 		$body = '{
 				    "data": {
@@ -44,7 +45,7 @@ class XsyCrmTest extends TestCase {
 	}
 
 	//销售机会
-	public function testOpportunity() {
+	public function _testOpportunity() {
 		$url  = 'objects/opportunity/create';
 		$body = '{	
 					"record":{
@@ -62,14 +63,14 @@ class XsyCrmTest extends TestCase {
 		var_dump( $res );
 	}
 
-	public function testOpportunity100() {
+	public function _testOpportunity100() {
 		for ( $i = 0; $i < 100; $i ++ ) {
 //			$this->testOpportunity();
 		}
 	}
 
 	//客户
-	public function testAccountCreate() {
+	public function _testAccountCreate() {
 		$url  = 'objects/account/create';
 		$body = '{
 				    "public": true,
@@ -85,7 +86,7 @@ class XsyCrmTest extends TestCase {
 	}
 
 
-	public function testAccountCreate100() {
+	public function _testAccountCreate100() {
 		for ( $i = 0; $i < 100; $i ++ ) {
 //			$this->testAccountCreate();
 		}
@@ -103,10 +104,10 @@ class XsyCrmTest extends TestCase {
 		$headers   = [];
 		$options   = [];
 		XsyCrm::setConfig( self::getConfig() );
-		$res = XsyCrm::apiCall( $url, 'POST', $body, $headers, $options, 1 , true);
-		var_dump( $res->getHttpResponseCode());
+		$res = XsyCrm::apiCall( $url, 'POST', $body, $headers, $options, 1, true );
+		var_dump( $res->getHttpResponseCode() );
 //		var_dump( $res->getHeaders());
-		var_dump( $res->getBody());
+		var_dump( $res->getBody() );
 	}
 
 

@@ -10,7 +10,9 @@
 
 namespace XsyCrm;
 
-use XsyCrm\Cache\MemCacheStore;
+use XsyCrm\Cache\CacheStoreInterface;
+use XsyCrm\Cache\MemCachedStore;
+use XsyCrm\Cache\RedisCacheStore;
 use XsyCrm\Http\RawRequest;
 use XsyCrm\HttpClients\GuzzleHttpClient;
 use XsyCrm\Logger\MonologLogger;
@@ -34,10 +36,20 @@ class XsyCrm {
 	}
 
 
+	public static function setCache( CacheStoreInterface $cache ) {
+		self::$cache = $cache;
+	}
+
 	public static function getCache() {
 		if ( ! self::$cache ) {
-			MemCacheStore::setConf( self::$config );
-			self::$cache = MemCacheStore::getInstance( self::getConfig()['normal']['memcache_instance_key'] );
+			$driver = isset( self::getConfig()['normal']['cache_driver'] ) ? self::getConfig()['normal']['cache_driver'] : 'memcached';
+			if ( $driver == 'memcached' ) {
+				MemCachedStore::setConf( self::$config );
+				self::$cache = MemCachedStore::getInstance( 'memcache_xsy-crm' );
+			} else if ( $driver == 'redis' ) {
+				RedisCacheStore::setConf( self::$config );
+				self::$cache = RedisCacheStore::getInstance( 'redis_xsy_crm' );
+			}
 		}
 
 		return self::$cache;

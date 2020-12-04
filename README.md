@@ -7,11 +7,12 @@
 
 
 ## 技术栈
-- php + guzzle + memcache + monolog + phpunit
+- php + guzzle + memcached + monolog + phpunit + redis
 
 
 ## 说明
-- memcache主要用来缓存token
+- memcached/redis主要用来缓存token
+- cache_driver 支持memcached和redis
 
 	
 ## phpunit test cover 100%
@@ -20,3 +21,6 @@
 	
 ## composer
 	- composer require jason-gao/php-xsy-crm v1.0.0 	
+
+## todo
+- 完善异常处理
